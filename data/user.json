@@ -1,11 +1,29 @@
-{
-    "name": "Priya Sharma",
+[
+  {
+    "name": "Rahul Sharma",
     "age": 28,
-    "email": "priya.sharma@example.com",
-    "phone": "+91 9876543210",
-    "aadharNumber": "1234 5678 9012",
-    "password": "strongPassword123",
-    "role": "voter",
-    "isVoted": false
+    "email": "rahul@example.com",
+    "phone": "9876543210",
+    "voterId": "ABC123456",
+    "password": "password1",
+    "role": "voter"
+  },
+  {
+    "name": "Priya Patel",
+    "age": 35,
+    "email": "priya@example.com",
+    "phone": "8765432109",
+    "voterId": "XYZ789012",
+    "password": "password2",
+    "role": "voter"
+  },
+  {
+    "name": "Souma",
+    "age": 25,
+    "email": "souma@example.com",
+    "phone": "7654321098",
+    "voterId": "PQR345678",
+    "password": "password3",
+    "role": "admin"
   }
-  
+]
