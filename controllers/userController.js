@@ -15,7 +15,7 @@ const userController = {
     try {
       // DB save
       const userData = req.body;
-      if (await isAdminPresent()) {
+      if (userData.role === "admin" && (await isAdminPresent())) {
         return res
           .status(422)
           .json({ message: "Can't have more than one admin" });
