@@ -14,8 +14,7 @@
     "email": "priya@example.com",
     "phone": "8765432109",
     "voterId": "XYZ789012",
-    "password": "password2",
-    "role": "voter"
+    "password": "password2"
   },
   {
     "name": "Souma",

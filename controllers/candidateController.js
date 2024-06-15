@@ -118,10 +118,9 @@ const candidateController = {
         return res.status(400).json({ message: "Can vote only once" });
       }
       // Get candidate from DB
-      const candidateId = req.params.candidateId;
-      const candidate = await Candidate.findById(candidateId);
-      if (!candidate)
-        return res.status(404).json({ error: "Candidate not found" });
+      const partyName = req.params.partyName;
+      const candidate = await Candidate.findBy({ party: partyName });
+      if (!candidate) return res.status(404).json({ error: "Party not found" });
 
       // Update Candidate document to record vote
       candidate.votes.push({ user: userId });
