@@ -119,7 +119,7 @@ const candidateController = {
       }
       // Get candidate from DB
       const partyName = req.params.partyName;
-      const candidate = await Candidate.find({ party: partyName });
+      const candidate = await Candidate.findOne({ party: partyName });
       if (!candidate) return res.status(404).json({ error: "Party not found" });
 
       // Update Candidate document to record vote
