@@ -15,7 +15,7 @@ const userController = {
       const token = await generateToken(userPayload);
       // Response send
       console.log("✅ User data saved");
-      res.status(200).json({ savedUser, token });
+      res.status(201).json({ savedUser, token });
     } catch (err) {
       console.log("⛔️ Internal Server Error:", err);
       res.status(500).json({ error: "Internal Server Error" });
@@ -26,7 +26,7 @@ const userController = {
       // Check if user exists
       const { voterId, password } = req.body;
       const user = await User.findOne({ voterId: voterId });
-      if (!user || !( user.comparePassword(password))) {
+      if (!user || !user.comparePassword(password)) {
         console.log("❌ Invalid userId or password");
         return res.status(401).json({ error: "Invalid userId or password" });
       }

@@ -23,14 +23,14 @@ router.delete(
   candidateController.deleteCandidate
 );
 
-// live vote count
-router.get("/vote/count", jwtAuthMiddleware, candidateController.voteCounter);
-
 // vote for a candidate
 router.post(
   "/vote/:candidateId",
   jwtAuthMiddleware,
   candidateController.voteForCandidate
 );
+
+// live vote count
+router.get("/vote/count", jwtAuthMiddleware, candidateController.voteCounter);
 
 module.exports = router;

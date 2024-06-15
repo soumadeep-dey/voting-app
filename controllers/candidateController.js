@@ -36,7 +36,7 @@ const candidateController = {
       const newCandidate = new Candidate(candidateData);
       const savedCandidate = await newCandidate.save();
       console.log("✅ New candidate data saved");
-      res.status(200).json(savedCandidate);
+      res.status(201).json(savedCandidate);
     } catch (err) {
       console.log("⛔️ Internal Server Error:", err);
       res.status(500).json({ error: "Internal Server Error" });
@@ -104,7 +104,57 @@ const candidateController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+  voteForCandidate: async (req, res) => {
+    try {
+      const userId = req.userPayload.id;
+      // Check if user is admin
+      if (await isAdmin(userId)) {
+        return res.status(403).json({ message: "Admin can't vote" });
+      }
+      // Get user from DB
+      const user = await User.findById(userId);
+      // Check if user has already voted
+      if (user.isVoted) {
+        return res.status(400).json({ message: "Can vote only once" });
+      }
+      // Get candidate from DB
+      const candidateId = req.params.candidateId;
+      const candidate = await Candidate.findById(candidateId);
+      if (!candidate)
+        return res.status(404).json({ error: "Candidate not found" });
+
+      // Update Candidate document to record vote
+      candidate.votes.push({ user: userId });
+      candidate.voteCount++;
+      await candidate.save();
+
+      // Update user document to record voted
+      user.isVoted = true;
+      await user.save();
+
+      // Response
+      console.log("✅ Vote recorded");
+      res.status(200).json({ message: "Vote recorded successfully" });
+    } catch (err) {
+      console.log("⛔️ Internal Server Error:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+  voteCounter: async (req, res) => {
+    try {
+      const candidateVoteCount = await Candidate.find(
+        {},
+        "voteCount party -_id"
+      ).sort({ voteCount: -1 });
+
+      // Send Response
+      console.log("✅ Vote count list fetched", candidateVoteCount);
+      res.status(200).json(candidateVoteCount);
+    } catch (err) {
+      console.log("⛔️ Internal Server Error:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
 
 module.exports = candidateController;
