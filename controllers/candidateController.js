@@ -15,7 +15,7 @@ const isAdmin = async (userId) => {
 const candidateController = {
   getCandidates: async (req, res) => {
     try {
-      const allCandidates = await Candidate.find({}, "name party");
+      const allCandidates = await Candidate.find({}, "name party age");
       console.log("✅ Candidates list fetched");
       res.status(200).json(allCandidates);
     } catch (err) {
