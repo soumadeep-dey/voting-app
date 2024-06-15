@@ -25,7 +25,7 @@ router.delete(
 
 // vote for a candidate
 router.post(
-  "/vote/:party",
+  "/vote/:partyName",
   jwtAuthMiddleware,
   candidateController.voteForCandidate
 );
