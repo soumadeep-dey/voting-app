@@ -59,14 +59,6 @@ userSchema.methods.comparePassword = async function (userPwd) {
   }
 };
 
-// Check if user is admin
-userSchema.methods.isAdmin = async function (userId) {
-  try {
-    return userId === this.id && this.role === "admin";
-  } catch (err) {
-    throw err;
-  }
-};
 
 const User = mongoose.model("user", userSchema);
 module.exports = User;

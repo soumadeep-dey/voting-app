@@ -23,7 +23,7 @@
     "email": "souma@example.com",
     "phone": "7654321098",
     "voterId": "PQR345678",
-    "password": "password3",
+    "password": "admin",
     "role": "admin"
   }
 ]

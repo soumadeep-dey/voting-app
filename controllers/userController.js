@@ -26,7 +26,7 @@ const userController = {
       // Check if user exists
       const { voterId, password } = req.body;
       const user = await User.findOne({ voterId: voterId });
-      if (!user || !(await user.comparePassword(password))) {
+      if (!user || !( user.comparePassword(password))) {
         console.log("❌ Invalid userId or password");
         return res.status(401).json({ error: "Invalid userId or password" });
       }
