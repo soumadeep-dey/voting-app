@@ -1,11 +1,25 @@
 const User = require("../models/User");
 const { generateToken } = require("../middleware/jwt");
 
+const isAdminPresent = async () => {
+  try {
+    const adminCount = await User.countDocuments({ role: "admin" });
+    return adminCount === 1;
+  } catch {
+    return false;
+  }
+};
+
 const userController = {
   signup: async (req, res) => {
     try {
       // DB save
       const userData = req.body;
+      if (await isAdminPresent()) {
+        return res
+          .status(422)
+          .json({ message: "Can't have more than one admin" });
+      }
       const newUser = new User(userData);
       const savedUser = await newUser.save();
       //Generate token

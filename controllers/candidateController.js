@@ -148,7 +148,7 @@ const candidateController = {
       ).sort({ voteCount: -1 });
 
       // Send Response
-      console.log("✅ Vote count list fetched", candidateVoteCount);
+      console.log("✅ Vote count list fetched");
       res.status(200).json(candidateVoteCount);
     } catch (err) {
       console.log("⛔️ Internal Server Error:", err);
