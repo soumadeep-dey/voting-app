@@ -1,5 +1,9 @@
 # Voting Application
 
+#### 🔗 _[Voting Application API](https://voting-api-xhn6.onrender.com/)_
+
+![Node.js](https://img.shields.io/badge/Node.js-5FA04E) ![](https://img.shields.io/badge/Express.js-blue) ![MongoDB](https://img.shields.io/badge/MongoDB-237a3b) ![MongoDB](https://img.shields.io/badge/MongoDB-237a3b) ![JWT](https://img.shields.io/badge/JWT-red) ![JWT](https://img.shields.io/badge/Bcrypt-orange)
+
 This is a backend application for a voting system where users can vote for candidates. It provides functionalities for user authentication, candidate management, and voting.
 
 ## Features
